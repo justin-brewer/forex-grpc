@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.converter";
+option java_outer_classname = "ConverterProto";
+
+package converter;
+
+service Converter {
+  rpc GetConversion (ConversionRequest) returns (ConversionReply) {}
+}
+
+message ConversionRequest {
+  string source = 1; // source currency e.g. "USD"
+  string target = 2; // target currency
+  float amount = 3; // amount in source currency: XX.xx
+}
+
+// The response message containing the greetings
+message ConversionReply {
+  float amount = 1; // amount in target currency: XX.xx
+}

@@ -1,10 +1,11 @@
 syntax = "proto3";
-
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.converter";
-option java_outer_classname = "ConverterProto";
-
 package converter;
+option go_package = ".;converter";
+
+//option java_multiple_files = true;
+//option java_package = "io.grpc.examples.converter";
+//option java_outer_classname = "ConverterProto";
+
 
 service Converter {
   rpc GetConversion (ConversionRequest) returns (ConversionReply) {}

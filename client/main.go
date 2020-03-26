@@ -41,7 +41,6 @@ func main() {
 	if err != nil {
 		log.Printf("did not connect: %v", err)
 	}
-	log.Println("connected to server")
 	defer conn.Close()
 	c := converter.NewConverterClient(conn)
 	r, err := c.GetConversion(ctx, &converter.ConversionRequest{Source: source, Target: target, Amount: float32(amount)})

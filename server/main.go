@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"io/ioutil"
@@ -31,8 +32,13 @@ type xrates struct {
 // SayHello implements helloworld.GreeterServer
 func (s *server) GetConversion(ctx context.Context, in *pb.ConversionRequest) (*pb.ConversionReply, error) {
 	log.Printf("Handling GetConversion request [%v] with context %v", in, ctx)
+	fmt.Printf("Args: Source: %v, Target: %v, Amount: %v", in.Source, in.Target, in.Amount)
 	target := getConversion(ctx, in)
 	return &pb.ConversionReply{Amount: target}, nil
+}
+
+func listCurrencies() string {
+
 }
 
 func getConversion(ctx context.Context, in *pb.ConversionRequest) float32 {
@@ -76,6 +82,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+	log.Printf("started listening on port: %v\n", 50051)
 	s := grpc.NewServer()
 	pb.RegisterConverterServer(s, &server{})
 	// Register reflection service on gRPC server.
@@ -83,5 +90,4 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
-	log.Printf("started listening on port: %v\n", 50051)
 }

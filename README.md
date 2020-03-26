@@ -1,7 +1,7 @@
 # forex-grpc
 * A gRPC API to compute currency exchange conversions from source currency amount to target currency amount.
 
-* The below usage instructions assume you already have go installed.
+* The below usage instructions assume you already have go, node.js, and npm installed.
 
 ## Usage:
 ---

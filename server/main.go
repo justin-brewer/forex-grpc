@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"net"
@@ -18,12 +19,12 @@ var (
 	//	addr   = flag.String("addr", ":50051", "Network host:port to listen on for gRPC connections.")
 	port   = ":50051"
 	rates  = xrates{}
-	source = "get"
+	source = "cache" //"get"
 )
 
-//const endpoint = "http://data.fixer.io/api/latest?access_key=4196e8bc7ff14104a867e574540057a9"
 const api_url = "http://data.fixer.io/api/latest"
-const api_key = "4196e8bc7ff14104a867e574540057a9"
+
+var api_key = getApiKey()
 
 var endpoint = fmt.Sprintf("%v?access_key=%v", api_url, api_key)
 
@@ -35,6 +36,10 @@ type xrates struct {
 	Base      string
 	Date      string
 	Rates     map[string]float32
+}
+
+type config struct {
+	ApiKey string `yaml:"apikey"`
 }
 
 // SayHello implements helloworld.GreeterServer
@@ -84,8 +89,25 @@ func getRates() {
 	rates.Rates[rates.Base] = 1.00
 }
 
+func getApiKey() string {
+
+	var c config
+	yamlFile, err := ioutil.ReadFile("conf.yaml")
+	if err != nil {
+		log.Printf("yamlFile.Get err   #%v ", err)
+	}
+	err = yaml.Unmarshal(yamlFile, &c)
+	if err != nil {
+		log.Fatalf("Unmarshal: %v", err)
+	}
+
+	return c.ApiKey
+}
+
 func main() {
 	flag.Parse()
+
+	fmt.Printf("endpoint: %v\n", endpoint)
 
 	lis, err := net.Listen("tcp", port)
 	if err != nil {

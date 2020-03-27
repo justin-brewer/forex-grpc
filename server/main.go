@@ -13,13 +13,14 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"sort"
+	"strings"
 )
 
 var (
-	//	addr   = flag.String("addr", ":50051", "Network host:port to listen on for gRPC connections.")
 	port   = ":50051"
 	rates  = xrates{}
-	source = "cache" //"get"
+	source = "get" //"get" or "cache"
 )
 
 const api_url = "http://data.fixer.io/api/latest"
@@ -50,9 +51,34 @@ func (s *server) GetConversion(ctx context.Context, in *pb.ConversionRequest) (*
 	return &pb.ConversionReply{Amount: target}, nil
 }
 
-func listCurrencies() string {
-	list := ""
-	return list
+func (s *server) GetCurrencyList(ctx context.Context, in *pb.ListRequest) (*pb.ListReply, error) {
+	return &pb.ListReply{Reply: listRates()}, nil
+}
+
+func listRates() string {
+	var list strings.Builder
+	if rates.Date == "" {
+		getRates()
+	}
+
+	var res []string
+	for val := range rates.Rates {
+		res = append(res, val)
+	}
+
+	sort.Strings(res)
+
+	cnt := 1
+	for _, c := range res {
+		if (cnt%4) == 0 && cnt > 0 {
+			list.WriteString(fmt.Sprintf("%v\n", c))
+		} else {
+			list.WriteString(fmt.Sprintf("%v\t", c))
+		}
+		cnt++
+	}
+
+	return list.String()
 }
 
 func getConversion(ctx context.Context, in *pb.ConversionRequest) float32 {

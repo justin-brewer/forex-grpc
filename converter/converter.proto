@@ -9,6 +9,7 @@ option go_package = ".;converter";
 
 service Converter {
   rpc GetConversion (ConversionRequest) returns (ConversionReply) {}
+  rpc GetCurrencyList (ListRequest) returns (ListReply) {}
 }
 
 message ConversionRequest {
@@ -20,4 +21,12 @@ message ConversionRequest {
 // The response message containing the greetings
 message ConversionReply {
   float amount = 1; // amount in target currency: XX.xx
+}
+
+message ListRequest {
+  string request = 1;
+}
+
+message ListReply {
+  string reply = 1;
 }

@@ -119,9 +119,89 @@ func (m *ConversionReply) GetAmount() float32 {
 	return 0
 }
 
+type ListRequest struct {
+	Request              string   `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListRequest) Reset()         { *m = ListRequest{} }
+func (m *ListRequest) String() string { return proto.CompactTextString(m) }
+func (*ListRequest) ProtoMessage()    {}
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c03eb4403ca9b02d, []int{2}
+}
+
+func (m *ListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListRequest.Unmarshal(m, b)
+}
+func (m *ListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListRequest.Marshal(b, m, deterministic)
+}
+func (m *ListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListRequest.Merge(m, src)
+}
+func (m *ListRequest) XXX_Size() int {
+	return xxx_messageInfo_ListRequest.Size(m)
+}
+func (m *ListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListRequest proto.InternalMessageInfo
+
+func (m *ListRequest) GetRequest() string {
+	if m != nil {
+		return m.Request
+	}
+	return ""
+}
+
+type ListReply struct {
+	Reply                string   `protobuf:"bytes,1,opt,name=reply,proto3" json:"reply,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListReply) Reset()         { *m = ListReply{} }
+func (m *ListReply) String() string { return proto.CompactTextString(m) }
+func (*ListReply) ProtoMessage()    {}
+func (*ListReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c03eb4403ca9b02d, []int{3}
+}
+
+func (m *ListReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReply.Unmarshal(m, b)
+}
+func (m *ListReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReply.Marshal(b, m, deterministic)
+}
+func (m *ListReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReply.Merge(m, src)
+}
+func (m *ListReply) XXX_Size() int {
+	return xxx_messageInfo_ListReply.Size(m)
+}
+func (m *ListReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListReply proto.InternalMessageInfo
+
+func (m *ListReply) GetReply() string {
+	if m != nil {
+		return m.Reply
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*ConversionRequest)(nil), "converter.ConversionRequest")
 	proto.RegisterType((*ConversionReply)(nil), "converter.ConversionReply")
+	proto.RegisterType((*ListRequest)(nil), "converter.ListRequest")
+	proto.RegisterType((*ListReply)(nil), "converter.ListReply")
 }
 
 func init() {
@@ -129,20 +209,22 @@ func init() {
 }
 
 var fileDescriptor_c03eb4403ca9b02d = []byte{
-	// 196 bytes of a gzipped FileDescriptorProto
+	// 238 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4f, 0xce, 0xcf, 0x2b,
 	0x4b, 0x2d, 0x2a, 0x49, 0x2d, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x84, 0x0b, 0x28,
 	0x45, 0x73, 0x09, 0x3a, 0x83, 0x39, 0xc5, 0x99, 0xf9, 0x79, 0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5,
 	0x25, 0x42, 0x62, 0x5c, 0x6c, 0xc5, 0xf9, 0xa5, 0x45, 0xc9, 0xa9, 0x12, 0x8c, 0x0a, 0x8c, 0x1a,
 	0x9c, 0x41, 0x50, 0x1e, 0x48, 0xbc, 0x24, 0xb1, 0x28, 0x3d, 0xb5, 0x44, 0x82, 0x09, 0x22, 0x0e,
 	0xe1, 0x81, 0xc4, 0x13, 0x73, 0xf3, 0x4b, 0xf3, 0x4a, 0x24, 0x98, 0x15, 0x18, 0x35, 0x98, 0x82,
-	0xa0, 0x3c, 0x25, 0x4d, 0x2e, 0x7e, 0x64, 0xc3, 0x0b, 0x72, 0x2a, 0x91, 0x94, 0x32, 0x22, 0x2b,
-	0x35, 0x8a, 0xe0, 0xe2, 0x74, 0x86, 0x39, 0x4a, 0xc8, 0x9b, 0x8b, 0xd7, 0x3d, 0xb5, 0x04, 0xa1,
-	0x55, 0x48, 0x46, 0x0f, 0xe1, 0x05, 0x0c, 0xe7, 0x4a, 0x49, 0xe1, 0x90, 0x2d, 0xc8, 0xa9, 0x54,
-	0x62, 0x70, 0xd2, 0xe3, 0x92, 0xca, 0xcc, 0xd7, 0x4b, 0x2f, 0x2a, 0x48, 0xd6, 0x4b, 0xad, 0x48,
-	0xcc, 0x2d, 0xc8, 0x49, 0x2d, 0x46, 0xa8, 0x77, 0xe2, 0x83, 0xdb, 0x1a, 0x00, 0x0a, 0x9a, 0x00,
-	0xc6, 0x24, 0x36, 0x70, 0x18, 0x19, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xe7, 0x70, 0xd6, 0x47,
-	0x36, 0x01, 0x00, 0x00,
+	0xa0, 0x3c, 0x25, 0x4d, 0x2e, 0x7e, 0x64, 0xc3, 0x0b, 0x72, 0x2a, 0x91, 0x94, 0x32, 0xa2, 0x28,
+	0x55, 0xe7, 0xe2, 0xf6, 0xc9, 0x2c, 0x2e, 0x81, 0xb9, 0x40, 0x82, 0x8b, 0xbd, 0x08, 0xc2, 0x84,
+	0x3a, 0x01, 0xc6, 0x55, 0x52, 0xe4, 0xe2, 0x84, 0x28, 0x04, 0x99, 0x26, 0xc2, 0xc5, 0x5a, 0x04,
+	0x62, 0x40, 0x15, 0x41, 0x38, 0x46, 0xb3, 0x19, 0xb9, 0x38, 0x9d, 0x61, 0x3e, 0x14, 0xf2, 0xe6,
+	0xe2, 0x75, 0x4f, 0x2d, 0x41, 0xb8, 0x43, 0x48, 0x46, 0x0f, 0x11, 0x1e, 0x18, 0x7e, 0x97, 0x92,
+	0xc2, 0x21, 0x5b, 0x90, 0x53, 0xa9, 0xc4, 0x20, 0xe4, 0xc8, 0xc5, 0x0f, 0x32, 0xac, 0xb4, 0xa8,
+	0x28, 0x35, 0x2f, 0xb9, 0x12, 0xe4, 0x10, 0x21, 0x31, 0x24, 0x0d, 0x48, 0x5e, 0x90, 0x12, 0xc1,
+	0x10, 0x07, 0x1b, 0xe1, 0xc4, 0x1b, 0xc5, 0xad, 0x67, 0x0d, 0x97, 0x4a, 0x62, 0x03, 0x47, 0x89,
+	0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x5d, 0x08, 0xbb, 0xff, 0xa5, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -158,6 +240,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ConverterClient interface {
 	GetConversion(ctx context.Context, in *ConversionRequest, opts ...grpc.CallOption) (*ConversionReply, error)
+	GetCurrencyList(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListReply, error)
 }
 
 type converterClient struct {
@@ -177,9 +260,19 @@ func (c *converterClient) GetConversion(ctx context.Context, in *ConversionReque
 	return out, nil
 }
 
+func (c *converterClient) GetCurrencyList(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListReply, error) {
+	out := new(ListReply)
+	err := c.cc.Invoke(ctx, "/converter.Converter/GetCurrencyList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ConverterServer is the server API for Converter service.
 type ConverterServer interface {
 	GetConversion(context.Context, *ConversionRequest) (*ConversionReply, error)
+	GetCurrencyList(context.Context, *ListRequest) (*ListReply, error)
 }
 
 // UnimplementedConverterServer can be embedded to have forward compatible implementations.
@@ -188,6 +281,9 @@ type UnimplementedConverterServer struct {
 
 func (*UnimplementedConverterServer) GetConversion(ctx context.Context, req *ConversionRequest) (*ConversionReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConversion not implemented")
+}
+func (*UnimplementedConverterServer) GetCurrencyList(ctx context.Context, req *ListRequest) (*ListReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCurrencyList not implemented")
 }
 
 func RegisterConverterServer(s *grpc.Server, srv ConverterServer) {
@@ -212,6 +308,24 @@ func _Converter_GetConversion_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Converter_GetCurrencyList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConverterServer).GetCurrencyList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/converter.Converter/GetCurrencyList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConverterServer).GetCurrencyList(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Converter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "converter.Converter",
 	HandlerType: (*ConverterServer)(nil),
@@ -219,6 +333,10 @@ var _Converter_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetConversion",
 			Handler:    _Converter_GetConversion_Handler,
+		},
+		{
+			MethodName: "GetCurrencyList",
+			Handler:    _Converter_GetCurrencyList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

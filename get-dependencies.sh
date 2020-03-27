@@ -7,4 +7,5 @@ go get -u   google.golang.org/grpc \
             google.golang.org/grpc/examples/helloworld/helloworld \
             golang.org/x/net/context \
             golang.org/x/oauth2/google \
-            github.com/golang/protobuf/proto
+            github.com/golang/protobuf/proto \
+	    github.com/golang/protobuf/protoc-gen-go

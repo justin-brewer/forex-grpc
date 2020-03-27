@@ -2,6 +2,7 @@
 go get -u   google.golang.org/grpc \
             google.golang.org/grpc/codes \
             google.golang.org/grpc/status \
+	    gopkg.in/yaml.v2 \
             google.golang.org/grpc/metadata \
             google.golang.org/grpc/reflection \
             google.golang.org/grpc/examples/helloworld/helloworld \

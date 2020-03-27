@@ -1,6 +1,6 @@
 # forex-grpc
 * A gRPC API to compute currency exchange conversions from source currency amount to target currency amount.
-
+* Supports listing available currencies (see client usage below)
 * The below usage instructions assume you already have go, node.js, and npm installed.
 
 ## Usage:
@@ -12,10 +12,12 @@
 ### Client
 ### Golang (from project root)
     $ go run client/main.go <source> <target> <amount>
+    $ go run client/main.go list
 
 ### node.js (from dir client-js)
     $ npm install
     $ node client.js <source> <target> <amount>
+    $ node client.js list
 
 ### arguments
 * <span style="text-decoration: underline">source</span>: three letter currency symbol from senders account (e.g. "USD")

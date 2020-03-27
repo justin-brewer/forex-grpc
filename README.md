@@ -5,6 +5,9 @@
 
 ## Usage:
 ---
+* visit https://fixer.io/ to get an API key
+* create file conf.yaml in the root directory and add "apikey: <your-api-key>"
+---
 ### Server (from project root)
     $ ./install-dependencies.sh    # there is also a powershell version
     $ go run server/main.go

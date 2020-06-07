@@ -1,5 +1,15 @@
 # forex-grpc
 * A gRPC API to compute currency exchange conversions from source currency amount to target currency amount.
+    - USD: US dollar
+    - EUR: Euro
+    - GBP: Great British Pound
+    - JPY: Japanese Yen
+    - CAD: Canadian Dollar
+    - AUD: Australian Dollar
+    - CNY: Chinese Yuan Renminbi
+    - CHF: Swiss Franc
+    - SGD: Singapore Dollar
+    - NOK: Norwegian Krone
 * Supports listing available currencies (see client usage below)
 * The below usage instructions assume you already have go, node.js, and npm installed.
 

@@ -6,6 +6,8 @@
 ## Usage:
 ---
 * visit https://fixer.io/ to get an API key
+* the free subscription will default to using EUR as the base currency
+* if you have the basic subscription ($10/month), the server will randomly choose from 10 of the worlds top currencies
 * create file conf.yaml in the root directory and add "apikey: \<your-api-key>"
 ---
 ### Server (from project root)

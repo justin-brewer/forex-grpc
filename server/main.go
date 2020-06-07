@@ -11,6 +11,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net"
 	"net/http"
 	"sort"
@@ -25,9 +26,13 @@ var (
 
 const api_url = "http://data.fixer.io/api/latest"
 
+//const api_url = "https://api.exchangeratesapi.io/latest"
+
 var api_key = getApiKey()
 
 var endpoint = fmt.Sprintf("%v?access_key=%v", api_url, api_key)
+
+//var endpoint = api_url
 
 type server struct{}
 
@@ -85,6 +90,7 @@ func getConversion(ctx context.Context, in *pb.ConversionRequest) float32 {
 	if rates.Date == "" {
 		getRates()
 	}
+	getRates()
 
 	newAmount := (rates.Rates[in.Target] / rates.Rates[in.Source]) * in.Amount
 	return newAmount
@@ -93,7 +99,11 @@ func getConversion(ctx context.Context, in *pb.ConversionRequest) float32 {
 func getRates() {
 	var rsp string
 	if source == "get" {
-		resp, err := http.Get(endpoint)
+		base := getBase()
+		ep := endpoint + "&base=" + base
+		fmt.Print("endpoint called: ")
+		fmt.Println(ep)
+		resp, err := http.Get(ep)
 		if err != nil {
 			log.Printf("error with GET")
 			log.Printf("%v\n", err)
@@ -113,6 +123,8 @@ func getRates() {
 		log.Printf("err:\n%v", errR)
 	}
 	rates.Rates[rates.Base] = 1.00
+	fmt.Print("api repsonse: ")
+	fmt.Println(rates)
 }
 
 func getApiKey() string {
@@ -128,6 +140,36 @@ func getApiKey() string {
 	}
 
 	return c.ApiKey
+}
+
+func getBase() string {
+	cList, err := ioutil.ReadFile("currencies.txt")
+	if err != nil {
+		log.Printf("currencies.txt err   #%v ", err)
+	}
+
+	c := string(cList)
+
+	curs := strings.Split(c, "\n")
+
+	for cur := range curs {
+		fmt.Println(cur)
+	}
+
+	n := len(curs)
+
+	fmt.Print("len(curs): ")
+	fmt.Println(n)
+
+	cn := rand.Int31n(int32(n))
+
+	fmt.Print("rand num: ")
+	fmt.Println(cn)
+	fmt.Print("base: ")
+	fmt.Println(curs[cn])
+
+	return curs[cn]
+
 }
 
 func main() {
